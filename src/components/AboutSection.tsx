@@ -147,7 +147,7 @@ export const AboutSection: React.FC = () => {
                   loading="lazy"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                  <p className="text-white font-heading text-lg">Dristig Blekk i Aksjon</p>
+                  <p className="text-white font-heading text-lg">Dristig Blekk</p>
                 </div>
               </div>
             </motion.div>
