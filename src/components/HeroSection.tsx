@@ -78,9 +78,9 @@ export const HeroSection: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          Tatovering med presisjon.
+          Skoggata Tattoo Parlour
           <br />
-          <span className="text-destructive">Båret for livet.</span>
+          <span className="text-destructive">Tatovering og piercing.</span>
         </motion.h1>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
@@ -89,7 +89,7 @@ export const HeroSection: React.FC = () => {
             size="lg"
             className="bg-primary hover:bg-primary-hover text-primary-foreground px-8 py-6 text-lg font-semibold shadow-strong"
           >
-            Bestill konsultasjon
+            Ta kontakt
           </Button>
         </motion.div>
       </motion.div>
