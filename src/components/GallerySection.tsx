@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import OrnamentDivider from "@/components/accents/OrnamentDivider";
 import MandalaBurst from "@/components/accents/MandalaBurst";
 import SacredRing from "@/components/accents/SacredRing";
-import { Eye, X } from "lucide-react";
+import { Eye, X, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface GalleryItem {
@@ -140,7 +140,30 @@ export const GallerySection: React.FC = () => {
               whileHover={{ scale: 1.02, rotate: 0 }}
             >
               <div className="bg-card/90 border-4 border-accent rounded-2xl p-6 shadow-strong">
-                <h3 className="text-4xl font-bold text-foreground font-heading">Remi Silverberg</h3>
+                <div className="flex items-center gap-3 md:gap-6">
+                  <div className="flex-shrink-0">
+                    <img 
+                      src="/remi-pic.jpg" 
+                      alt="Remi Silverberg - Profesjonell tatoveringskunstner og eier av Skoggata Tattoo Parlour"
+                      className="w-20 h-20 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-accent shadow-strong"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 md:gap-4 flex-wrap">
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground font-heading">Remi Silverberg</h3>
+                      <a 
+                        href="https://www.instagram.com/skoggata_tattoo/?hl=en" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-3 py-2 bg-accent/10 hover:bg-accent hover:text-accent-foreground rounded-lg transition-all duration-300 text-accent"
+                        aria-label="Følg Remi på Instagram"
+                      >
+                        <Instagram className="w-5 h-5" />
+                        <span className="text-sm font-medium">@skoggata_tattoo</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -178,34 +201,55 @@ export const GallerySection: React.FC = () => {
                 <Eye className="w-5 h-5 mr-2" />
                     Vis Alt Remis Arbeid
               </Button>
-            </div>
+          </div>
           </motion.div>
 
           {/* Kelvin Halberg Section */}
           <div className="mb-20">
             <div className="transform -rotate-1 hover:rotate-0 transition-transform duration-300 mb-8">
               <div className="bg-card/90 border-4 border-primary rounded-2xl p-6 shadow-strong">
-                <h3 className="text-4xl font-bold text-foreground font-heading">Kelvin Halberg</h3>
+                <div className="flex items-center gap-3 md:gap-6">
+                  <div className="flex-shrink-0">
+                    <div className="w-20 h-20 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full bg-primary/20 border-4 border-primary shadow-strong flex items-center justify-center">
+                      <span className="text-xl md:text-3xl lg:text-4xl font-bold text-primary font-heading">KH</span>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 md:gap-4 flex-wrap">
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground font-heading">Kelvin Halberg</h3>
+                      <a 
+                        href="https://www.instagram.com/human_nature369/?hl=en" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-3 py-2 bg-primary/10 hover:bg-primary hover:text-primary-foreground rounded-lg transition-all duration-300 text-primary"
+                        aria-label="Følg Kelvin på Instagram"
+                      >
+                        <Instagram className="w-5 h-5" />
+                        <span className="text-sm font-medium">@human_nature369</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               {previewItems.kelvin.map((item, index) => (
-                <div
-                  key={item.id}
+              <div
+                key={item.id}
                   className={`group cursor-pointer overflow-hidden rounded-2xl bg-card border-4 border-primary hover:border-accent hover:shadow-strong transition-all duration-500 transform ${
                     index % 2 === 0 ? '-rotate-2 hover:rotate-0' : 'rotate-1 hover:rotate-0'
                   }`}
-                  onClick={() => setSelectedImage(item)}
-                >
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={item.src}
-                      alt={item.alt}
+                onClick={() => setSelectedImage(item)}
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={item.src}
+                    alt={item.alt}
                       className="w-full h-80 object-cover object-center group-hover:scale-110 transition-transform duration-500"
-                      loading="lazy"
-                    />
+                    loading="lazy"
+                  />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                       <div className="bg-primary/90 backdrop-blur-sm px-6 py-3 rounded-full text-sm font-bold text-primary-foreground shadow-lg">
                             Se Bilde
                       </div>
@@ -230,7 +274,30 @@ export const GallerySection: React.FC = () => {
           <div className="mb-20">
             <div className="transform rotate-2 hover:rotate-0 transition-transform duration-300 mb-8">
               <div className="bg-card/90 border-4 border-destructive rounded-2xl p-6 shadow-strong">
-                <h3 className="text-4xl font-bold text-foreground font-heading">Frida</h3>
+                <div className="flex items-center gap-3 md:gap-6">
+                  <div className="flex-shrink-0">
+                    <img 
+                      src="/frida-pic.jpg" 
+                      alt="Frida Grasto - Talentfull tatoveringskunstner ved Skoggata Tattoo Parlour"
+                      className="w-20 h-20 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-destructive shadow-strong"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 md:gap-4 flex-wrap">
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground font-heading">Frida</h3>
+                      <a 
+                        href="https://www.instagram.com/grasto_tattoo/?hl=en" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-3 py-2 bg-destructive/10 hover:bg-destructive hover:text-destructive-foreground rounded-lg transition-all duration-300 text-destructive"
+                        aria-label="Følg Frida på Instagram"
+                      >
+                        <Instagram className="w-5 h-5" />
+                        <span className="text-sm font-medium">@grasto_tattoo</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -255,10 +322,10 @@ export const GallerySection: React.FC = () => {
                             Se Bilde
                       </div>
                     </div>
-                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
             <div className="text-center">
               <Button
                 onClick={() => setSelectedArtist('frida')}
