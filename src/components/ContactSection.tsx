@@ -69,7 +69,7 @@ export const ContactSection: React.FC = () => {
   return (
     <section id="contact" className="pt-24 bg-background relative overflow-hidden">
       <BotanicalVines className="absolute -right-8 -top-4 w-[360px] h-[220px] text-accent opacity-20" />
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-2 sm:px-4">
         <div className="max-w-6xl mx-auto">
               {/* Header */}
               <motion.div 
@@ -109,54 +109,54 @@ export const ContactSection: React.FC = () => {
                 </motion.div>
               </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+          <div className="grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 mb-16 min-w-0">
             {/* Contact Information & Hours */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8 min-w-0">
               {/* Contact Info */}
-              <div className="transform rotate-1 hover:rotate-0 transition-transform duration-300">
-                <Card className="bg-card/90 border-4 border-accent hover:border-primary transition-all duration-300">
+              <div className="transform sm:rotate-1 hover:rotate-0 transition-transform duration-300">
+                <Card className="bg-card/90 border-4 border-accent hover:border-primary transition-all duration-300 mx-2 sm:mx-0">
                   <CardHeader>
                         <CardTitle className="text-2xl font-semibold text-foreground font-heading">
                           Ta Kontakt
                         </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-6">
-                        <div className="flex items-center gap-4 text-muted-foreground">
-                          <div className="p-3 bg-accent/10 rounded-full text-accent">
-                            <Phone className="w-6 h-6" />
+                  <CardContent className="space-y-6 overflow-hidden">
+                        <div className="flex items-start gap-3 sm:gap-4 text-muted-foreground">
+                          <div className="p-2 sm:p-3 bg-accent/10 rounded-full text-accent flex-shrink-0">
+                            <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
                           </div>
-                          <div>
+                          <div className="min-w-0 flex-1">
                             <p className="font-medium text-foreground text-lg">Telefon</p>
                             <div className="space-y-1">
-                              <a href="tel:+4769251008" className="block text-xl hover:text-accent transition-fast">
+                              <a href="tel:+4769251008" className="block text-lg sm:text-xl hover:text-accent transition-fast">
                                 69 25 10 08
                               </a>
-                              <a href="tel:+4790092109" className="block text-xl hover:text-accent transition-fast">
+                              <a href="tel:+4790092109" className="block text-lg sm:text-xl hover:text-accent transition-fast">
                                 900 92 109
                               </a>
                             </div>
                           </div>
                         </div>
                     
-                        <div className="flex items-center gap-4 text-muted-foreground">
-                          <div className="p-3 bg-accent/10 rounded-full text-accent">
-                            <Mail className="w-6 h-6" />
+                        <div className="flex items-start gap-3 sm:gap-4 text-muted-foreground">
+                          <div className="p-2 sm:p-3 bg-accent/10 rounded-full text-accent flex-shrink-0">
+                            <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
                           </div>
-                          <div>
+                          <div className="min-w-0 flex-1">
                             <p className="font-medium text-foreground text-lg">E-post</p>
-                            <a href="mailto:skoggata@hotmail.com" className="text-xl hover:text-accent transition-fast">
+                            <a href="mailto:skoggata@hotmail.com" className="text-lg sm:text-xl hover:text-accent transition-fast break-all">
                               skoggata@hotmail.com
                             </a>
                           </div>
                         </div>
                     
-                    <div className="flex items-center gap-4 text-muted-foreground">
-                      <div className="p-3 bg-accent/10 rounded-full text-accent">
-                        <MapPin className="w-6 h-6" />
+                    <div className="flex items-start gap-3 sm:gap-4 text-muted-foreground">
+                      <div className="p-2 sm:p-3 bg-accent/10 rounded-full text-accent flex-shrink-0">
+                        <MapPin className="w-5 h-5 sm:w-6 sm:h-6" />
                       </div>
-                      <div>
+                      <div className="min-w-0 flex-1">
                             <p className="font-medium text-foreground text-lg">Adresse</p>
-                            <p className="text-xl">Skoggata 10<br />1530 MOSS</p>
+                            <p className="text-lg sm:text-xl">Skoggata 10<br />1530 MOSS</p>
                       </div>
                     </div>
                   </CardContent>
@@ -164,24 +164,24 @@ export const ContactSection: React.FC = () => {
               </div>
 
               {/* Opening Hours */}
-              <div className="transform -rotate-1 hover:rotate-0 transition-transform duration-300">
-                <Card className="bg-card/90 border-4 border-primary hover:border-accent transition-all duration-300">
+              <div className="transform sm:-rotate-1 hover:rotate-0 transition-transform duration-300">
+                <Card className="bg-card/90 border-4 border-primary hover:border-accent transition-all duration-300 mx-2 sm:mx-0">
                   <CardHeader>
                         <CardTitle className="text-2xl font-semibold text-foreground font-heading flex items-center gap-3">
                           <Clock className="w-6 h-6 text-primary" />
                           Åpningstider
                         </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4 text-lg">
-                    <div className="flex justify-between items-center p-3 bg-card/50 rounded-lg">
+                  <CardContent className="space-y-4 text-base sm:text-lg overflow-hidden">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 bg-card/50 rounded-lg gap-1 sm:gap-0">
                           <span className="font-medium">Mandag - Fredag</span>
                           <span className="font-bold text-accent">12:00 - 17:00</span>
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-card/50 rounded-lg">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 bg-card/50 rounded-lg gap-1 sm:gap-0">
                           <span className="font-medium">Lørdag</span>
                           <span className="font-bold text-accent">12:00 - 15:00</span>
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-card/50 rounded-lg">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 bg-card/50 rounded-lg gap-1 sm:gap-0">
                           <span className="font-medium">Søndag</span>
                           <span className="font-bold text-muted-foreground/70">Stengt</span>
                     </div>
@@ -191,16 +191,16 @@ export const ContactSection: React.FC = () => {
             </div>
 
             {/* Contact Form */}
-            <div className="transform rotate-1 hover:rotate-0 transition-transform duration-300">
-              <Card className="bg-card/90 border-4 border-destructive hover:border-primary transition-all duration-300">
+            <div className="min-w-0">
+              <Card className="bg-card/90 border-4 border-destructive hover:border-primary transition-all duration-300 mx-2 sm:mx-0">
                 <CardHeader>
                       <CardTitle className="text-3xl font-bold text-foreground font-heading">
                         Bestill en Konsultasjon
                       </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-4">
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                    <div className="grid md:grid-cols-2 gap-2 sm:gap-4">
                       <div className="space-y-2">
                             <Label htmlFor="name" className="text-base font-medium">Fullt Navn *</Label>
                         <Input
@@ -227,7 +227,7 @@ export const ContactSection: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="grid md:grid-cols-2 gap-2 sm:gap-4">
                       <div className="space-y-2">
                             <Label htmlFor="phone" className="text-base font-medium">Telefon</Label>
                         <Input
@@ -282,14 +282,14 @@ export const ContactSection: React.FC = () => {
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full bg-destructive hover:bg-destructive/90 text-destructive-foreground shadow-strong text-lg font-semibold"
+                      className="w-full bg-destructive hover:bg-destructive/90 text-destructive-foreground shadow-strong text-sm lg:text-md font-semibold"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
                             <>Sender...</>
                       ) : (
                         <>
-                          <Send className="w-5 h-5 mr-2" />
+                          <Send className="w-5 h-5 mr-2 " />
                               Send Konsultasjonsforespørsel
                         </>
                       )}

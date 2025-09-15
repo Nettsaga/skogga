@@ -81,7 +81,7 @@ export const ServicesSection: React.FC = () => {
       title: "Tatovering",
       description: "Vi har tre talentfulle tatoveringskunstnere som jobber for oss: Remi Sølvberg, Frida Grasto og Kelvin Halberg. Naviger ned på siden for å få en smak av vårt arbeid.",
       icon: <Palette className="w-6 h-6" />,
-      image: "/remi/18.jpeg",
+      image: "/about-3.jpg",
       imageAlt: "Skreddersydd tatovering av Remi Sølvberg - profesjonell tatoveringskunstner i Moss, Norge",
       rotation: "rotate-2"
     },
@@ -95,7 +95,7 @@ export const ServicesSection: React.FC = () => {
         "Aldersgrense 18 år for brystvorte piercing."
       ],
       icon: <Calendar className="w-6 h-6" />,
-      image: "/frida/12.jpeg",
+      image: "/about-2.jpg",
       imageAlt: "Profesjonell piercing av Frida Grasto - sikre piercingtjenester i Moss, Norge",
       rotation: "-rotate-2"
     }

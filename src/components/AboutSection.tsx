@@ -90,7 +90,7 @@ export const AboutSection: React.FC = () => {
               >
                 <div className="bg-card border-4 border-accent rounded-2xl p-4 shadow-strong">
                   <img 
-                    src="/remi/25.jpeg" 
+                    src="/about-1.jpg" 
                     alt="Remi Sølvberg - Eier og profesjonell tatoveringskunstner ved Skoggata Tattoo Parlour i Moss, Norge"
                     className="w-full h-80 object-cover rounded-lg"
                     loading="lazy"
@@ -122,7 +122,7 @@ export const AboutSection: React.FC = () => {
                 <img 
                   src="/parlor.png" 
                   alt="Interiør av Skoggata Tattoo Parlour - profesjonelt tatoveringsstudio i Moss med moderne utstyr"
-                  className="w-full h-64 object-cover"
+                  className="w-full h-96 object-cover"
                   loading="lazy"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
@@ -141,9 +141,9 @@ export const AboutSection: React.FC = () => {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-medium border-4 border-accent">
                 <img 
-                  src="/kelvin/15.jpg" 
+                  src="/about-4.jpg" 
                   alt="Tatoveringsarbeid pågår hos Skoggata Tattoo Parlour - dristig blekk og profesjonell utførelse"
-                  className="w-full h-64 object-cover"
+                  className="w-full h-96 object-cover"
                   loading="lazy"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
