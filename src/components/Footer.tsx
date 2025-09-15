@@ -15,9 +15,9 @@ export const Footer: React.FC = () => {
           <div className="col-span-2 md:col-span-1">
             <div className="mb-4">
               <img 
-                src="/logo.webp" 
+                src="/logo_stp.png" 
                 alt="Skoggata Tattoo Parlour Logo" 
-                className="h-12 w-auto mb-4"
+                className="h-16 w-auto mb-4"
               />
             </div>
             <p className="text-muted-foreground leading-relaxed mb-4">

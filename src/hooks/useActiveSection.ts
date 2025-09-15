@@ -17,7 +17,7 @@ export const useActiveSection = () => {
       },
       {
         threshold: 0.1,
-        rootMargin: '-120px 0px -60% 0px', // Account for fixed navbar (104px + margin)
+        rootMargin: '-80px 0px -60% 0px', // Account for better section detection
       }
     );
 

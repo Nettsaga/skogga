@@ -8,15 +8,18 @@ import { TestimonySection } from '@/components/TestimonySection';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
 import { useActiveSection } from '@/hooks/useActiveSection';
+import { useSidebar } from '@/hooks/useSidebar';
 
 const Index = () => {
   const activeSection = useActiveSection();
+  const { isCollapsed } = useSidebar();
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar activeSection={activeSection} />
       
-      <main>
+      {/* Main content with left margin for desktop sidebar */}
+      <main className={`transition-all duration-300 ${isCollapsed ? 'lg:ml-20' : 'lg:ml-80'}`}>
         <HeroSection />
         <AboutSection />
         <ServicesSection />
@@ -25,7 +28,9 @@ const Index = () => {
         <ContactSection />
       </main>
       
-      <Footer />
+      <div className={`transition-all duration-300 ${isCollapsed ? 'lg:ml-20' : 'lg:ml-80'}`}>
+        <Footer />
+      </div>
     </div>
   );
 };
