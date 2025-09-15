@@ -14,32 +14,32 @@ export const Footer: React.FC = () => {
           {/* Studio Info */}
           <div className="col-span-2 md:col-span-1">
             <div className="mb-4">
-              <img 
-                src="/logo_stp.png" 
-                alt="Skoggata Tattoo Parlour Logo" 
+              <img
+                src="/l2.png"
+                alt="Skoggata Tattoo Parlour Logo"
                 className="h-16 w-auto mb-4"
               />
             </div>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Norsk tatoveringskunst forankret i håndverk, presisjon og autentiske klientforhold. 
+              Norsk tatoveringskunst forankret i håndverk, presisjon og autentiske klientforhold.
               Skaper meningsfulle tatoveringer som tåler tidens tann.
             </p>
             <div className="text-sm text-muted-foreground mb-4">
               <p>Org. no. 980 495 140</p>
             </div>
             <div className="flex gap-4">
-              <a 
-                href="https://www.instagram.com/skoggata_tattoo/?hl=en" 
-                target="_blank" 
+              <a
+                href="https://www.instagram.com/skoggata_tattoo/?hl=en"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-fast"
                 aria-label="Follow us on Instagram"
               >
                 <Instagram className="w-5 h-5" />
               </a>
-              <a 
-                href="https://www.facebook.com/skoggatatattooparlour" 
-                target="_blank" 
+              <a
+                href="https://www.facebook.com/skoggatatattooparlour"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-fast"
                 aria-label="Follow us on Facebook"
