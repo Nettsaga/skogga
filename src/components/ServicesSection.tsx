@@ -10,40 +10,41 @@ interface ServiceCardProps {
   title: string;
   description: string;
   details?: string[];
+  detailsTitle?: string;
   icon: React.ReactNode;
   image: string;
   imageAlt: string;
   rotation: string;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ 
-  title, 
-  description, 
+const ServiceCard: React.FC<ServiceCardProps> = ({
+  title,
+  description,
   details,
+  detailsTitle,
   icon,
   image,
   imageAlt,
   rotation
 }) => (
-  <motion.div 
-    className={`transform ${rotation} hover:rotate-0 transition-all duration-500 group`}
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
+  <motion.div
+    className={`transform ${rotation} group`}
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
     viewport={{ once: true, margin: "-50px" }}
-    transition={{ duration: 0.6 }}
-    whileHover={{ scale: 1.02, rotate: 0 }}
+    transition={{ duration: 0.4 }}
   >
-    <Card className="bg-card/90 border-4 border-accent hover:border-primary hover:shadow-strong transition-all duration-300 h-full overflow-hidden">
+    <Card className="bg-card/90 border-4 border-accent h-full overflow-hidden">
       {/* Image Header */}
       <div className="relative h-64 overflow-hidden">
-        <img 
+        <img
           src={image}
           alt={imageAlt}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
         <div className="absolute top-4 left-4">
-          <div className="p-3 bg-accent/90 rounded-full text-accent-foreground shadow-lg">
+          <div className="p-3 bg-accent/90 rounded-full text-accent-foreground">
             {icon}
           </div>
         </div>
@@ -58,16 +59,15 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         <p className="text-muted-foreground leading-relaxed text-lg mb-6">
           {description}
         </p>
-        
+
         {details && (
           <div className="space-y-3 bg-card/50 rounded-lg p-4 border border-border">
-            <h4 className="font-semibold text-accent text-sm uppercase tracking-wide">Alderskrav:</h4>
-            {details.map((detail, index) => (
-              <p key={index} className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2">
-                <span className="text-accent font-bold">•</span>
-                {detail}
-              </p>
-            ))}
+            <h4 className="font-semibold text-accent text-sm uppercase tracking-wide">{detailsTitle ?? 'Detaljer'}:</h4>
+            <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+              {details.map((detail, index) => (
+                <li key={index}>{detail}</li>
+              ))}
+            </ul>
           </div>
         )}
       </CardContent>
@@ -79,7 +79,13 @@ export const ServicesSection: React.FC = () => {
   const services = [
     {
       title: "Tatovering",
-      description: "Vi har tre talentfulle tatoveringskunstnere som jobber for oss: Remi Sølvberg, Frida Grasto og Kelvin Halberg. Naviger ned på siden for å få en smak av vårt arbeid.",
+      description: "Vi har tre talentfulle tatoveringskunstnere som jobber for oss.",
+      details: [
+        "Remi Sølvberg",
+        "Frida Grasto",
+        "Kelvin Halberg",
+      ],
+      detailsTitle: "Kunstnere",
       icon: <Palette className="w-6 h-6" />,
       image: "/about-3.jpg",
       imageAlt: "Skreddersydd tatovering av Remi Sølvberg - profesjonell tatoveringskunstner i Moss, Norge",
@@ -94,6 +100,7 @@ export const ServicesSection: React.FC = () => {
         "14 år i følge med foreldre, gjelder ikke tunge- eller kinnpiercing.",
         "Aldersgrense 18 år for brystvorte piercing."
       ],
+      detailsTitle: "Alderskrav",
       icon: <Calendar className="w-6 h-6" />,
       image: "/about-2.jpg",
       imageAlt: "Profesjonell piercing av Frida Grasto - sikre piercingtjenester i Moss, Norge",
@@ -108,14 +115,14 @@ export const ServicesSection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <motion.h2 
+            <motion.h2
               className="text-4xl md:text-5xl font-bold text-foreground font-heading mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -124,7 +131,7 @@ export const ServicesSection: React.FC = () => {
             >
               Våre Tjenester
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -133,7 +140,7 @@ export const ServicesSection: React.FC = () => {
             >
               Vi tilbyr profesjonelle tatoverings- og piercingtjenester i hjertet av Moss, Norge.
             </motion.p>
-            <motion.div 
+            <motion.div
               className="mt-6 flex justify-center"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -145,7 +152,7 @@ export const ServicesSection: React.FC = () => {
           </motion.div>
 
           {/* Services Grid */}
-          <motion.div 
+          <motion.div
             className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -160,7 +167,7 @@ export const ServicesSection: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                <ServiceCard 
+                <ServiceCard
                   {...service}
                 />
               </motion.div>

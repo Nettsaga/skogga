@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Button } from "@/components/ui/button";
 // Using hero image from public folder
 import { CornerOrnament } from "@/components/accents/CornerOrnament";
@@ -7,6 +7,18 @@ import DaggerRose from "@/components/accents/DaggerRose";
 import { motion } from "framer-motion";
 
 export const HeroSection: React.FC = () => {
+  const images = useMemo(() => [
+    '/store.jpg',
+    '/hero/1.jpg',
+  ], []);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((idx) => (idx + 1) % images.length);
+    }, 7000);
+    return () => clearInterval(interval);
+  }, [images.length]);
   const scrollToContact = () => {
     const contactElement = document.querySelector('#contact');
     if (contactElement) {
@@ -16,75 +28,72 @@ export const HeroSection: React.FC = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
-      {/* Background Image with Parallax */}
-      <div 
-        className="absolute inset-0 parallax"
-        style={{
-          backgroundImage: `url(/hero/1.jpg)`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center top',
-          backgroundAttachment: 'fixed',
-        }}
-      >
-        {/* Gradient Overlay */}
-        <div 
-          className="absolute inset-0"
-          style={{ background: 'var(--gradient-overlay)' }}
-        />
-        {/* Unique motif */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <MandalaBurst className="w-[520px] h-[520px] text-accent opacity-20" />
-          <DaggerRose className="absolute bottom-10 right-10 w-[180px] h-[180px] text-accent opacity-25" />
-        </div>
+      {/* Background Image - simplified, no parallax */}
+      <div className="absolute inset-0">
+        {/* Crossfade backgrounds */}
+        {images.map((src, idx) => (
+          <div
+            key={src}
+            className={`absolute inset-0 transition-opacity duration-[800ms] ease-linear ${idx === currentIndex ? 'opacity-100' : 'opacity-0'}`}
+            style={{
+              backgroundImage: `url(${src})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center top',
+            }}
+          />
+        ))}
       </div>
-
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0" style={{ background: 'var(--gradient-overlay)' }} />
+      {/* Unique motif */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <MandalaBurst className="w-[520px] h-[520px] text-accent opacity-20" />
+        <DaggerRose className="absolute bottom-10 right-10 w-[180px] h-[180px] text-accent opacity-25" />
+      </div>
       {/* Content */}
-      <motion.div 
+      <motion.div
         className="relative z-10 text-center px-4 max-w-4xl mx-auto"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: "linear" }}
       >
+        {/* Large centered hero logo */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-6 flex justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
         >
+          <img src="/l2.png" alt="Skoggata Tattoo Parlour" className="h-28 md:h-36 lg:h-56 w-auto drop-shadow-2xl" />
+        </motion.div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
           <CornerOrnament className="absolute -top-8 -left-8 w-16 h-16 text-accent" />
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
           <CornerOrnament className="absolute -bottom-8 -right-8 w-16 h-16 rotate-180 text-accent" />
         </motion.div>
-        <motion.h1 
-          className="text-3xl md:text-4xl lg:text-6xl font-bold text-foreground font-heading mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+        <motion.h1
+          className="text-3xl md:text-4xl lg:text-6xl font-bold text-foreground font-heading mb-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
         >
           Tatovering med presisjon.
           <br />
           <span className="text-destructive">Båret for livet.</span>
         </motion.h1>
-        
-        <motion.p 
-          className="text-lg md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+
+        <motion.p
+          className="text-lg md:text-2xl text-muted-foreground mb-6 max-w-2xl mx-auto"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
         >
           Skreddersydde tatoveringer av spesialistkunstnere.
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <Button 
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+          <Button
             onClick={scrollToContact}
             size="lg"
             className="bg-primary hover:bg-primary-hover text-primary-foreground px-8 py-6 text-lg font-semibold shadow-strong"
@@ -94,12 +103,7 @@ export const HeroSection: React.FC = () => {
         </motion.div>
       </motion.div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-float">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
-        </div>
-      </div>
+      {/* Scroll Indicator removed to reduce motion */}
     </section>
   );
 };

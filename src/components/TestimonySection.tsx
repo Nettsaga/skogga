@@ -17,24 +17,23 @@ interface TestimonyCardProps {
   borderColor: string;
 }
 
-const TestimonyCard: React.FC<TestimonyCardProps> = ({ 
-  name, 
-  review, 
+const TestimonyCard: React.FC<TestimonyCardProps> = ({
+  name,
+  review,
   service,
   cleanliness,
   stylist,
   rotation,
   borderColor
 }) => (
-  <motion.div 
-    className={`transform ${rotation} hover:rotate-0 transition-all duration-500 group`}
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
+  <motion.div
+    className={`transform ${rotation} group`}
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
     viewport={{ once: true, margin: "-50px" }}
-    transition={{ duration: 0.6 }}
-    whileHover={{ scale: 1.02, rotate: 0 }}
+    transition={{ duration: 0.4 }}
   >
-    <Card className={`bg-card/90 border-3 ${borderColor} hover:border-primary hover:shadow-medium transition-all duration-300 h-full`}>
+    <Card className={`bg-card/90 border-3 ${borderColor} h-full`}>
       <CardContent className="p-4">
         {/* 5 Stars */}
         <div className="flex gap-1 mb-3">
@@ -149,64 +148,64 @@ export const TestimonySection: React.FC = () => {
     <section id="testimonies" className="py-24 bg-background relative overflow-hidden">
       <MandalaBurst className="absolute -right-32 top-16 w-[480px] h-[480px] text-accent opacity-10" petals={16} />
       <BotanicalVines className="absolute -left-16 bottom-0 w-[400px] h-[260px] text-accent opacity-15" />
-      
+
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
           >
-            <motion.h2 
+            <motion.h2
               className="text-4xl md:text-5xl font-bold text-foreground font-heading mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.4 }}
             >
               Hva Våre Kunder Sier
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.4 }}
             >
-              Ekte anmeldelser fra ekte mennesker som stolte på oss med sitt blekk og piercinger. 
+              Ekte anmeldelser fra ekte mennesker som stolte på oss med sitt blekk og piercinger.
               Hver 5-stjerners opplevelse forteller vår historie.
             </motion.p>
-            <motion.div 
+            <motion.div
               className="mt-6 flex justify-center"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.3 }}
             >
               <OrnamentDivider className="w-72 text-accent" />
             </motion.div>
           </motion.div>
 
           {/* Testimonies Grid */}
-          <motion.div 
+          <motion.div
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.4 }}
           >
             {displayedTestimonies.map((testimony, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.3 }}
               >
-                <TestimonyCard 
+                <TestimonyCard
                   {...testimony}
                 />
               </motion.div>
@@ -222,15 +221,15 @@ export const TestimonySection: React.FC = () => {
                 className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-strong font-semibold"
               >
                 <MessageSquare className="w-5 h-5 mr-2" />
-                Vis Alle Anmeldelser ({testimonies.length - 3} flere)
+                Se flere anmeldelser
               </Button>
             </div>
           )}
 
           {/* Call to Action */}
           <div className="mt-16 text-center">
-            <div className="transform rotate-1 hover:rotate-0 transition-transform duration-300 inline-block">
-              <Card className="bg-card/90 border-4 border-primary p-8 shadow-strong">
+            <div className="inline-block">
+              <Card className="bg-card/90 border-4 border-primary p-8">
                 <h3 className="text-3xl font-bold text-foreground font-heading mb-4">
                   Klar til å Bli Med Dem?
                 </h3>

@@ -8,18 +8,16 @@ import { TestimonySection } from '@/components/TestimonySection';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
 import { useActiveSection } from '@/hooks/useActiveSection';
-import { useSidebar } from '@/hooks/useSidebar';
 
 const Index = () => {
   const activeSection = useActiveSection();
-  const { isCollapsed } = useSidebar();
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar activeSection={activeSection} />
-      
-      {/* Main content with left margin for desktop sidebar */}
-      <main className={`transition-all duration-300 ${isCollapsed ? 'lg:ml-20' : 'lg:ml-80'}`}>
+
+      {/* Main content - navbar overlays hero */}
+      <main>
         <HeroSection />
         <AboutSection />
         <ServicesSection />
@@ -27,8 +25,8 @@ const Index = () => {
         <TestimonySection />
         <ContactSection />
       </main>
-      
-      <div className={`transition-all duration-300 ${isCollapsed ? 'lg:ml-20' : 'lg:ml-80'}`}>
+
+      <div className={`pt-8`}>
         <Footer />
       </div>
     </div>

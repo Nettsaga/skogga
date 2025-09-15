@@ -18,7 +18,7 @@ interface GalleryItem {
 // Generate gallery items from public folder images
 const generateGalleryItems = (): GalleryItem[] => {
   const items: GalleryItem[] = [];
-  
+
   // Remi Silverberg - All works
   const remiImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60];
   remiImages.forEach((num) => {
@@ -26,12 +26,12 @@ const generateGalleryItems = (): GalleryItem[] => {
     items.push({
       id: `remi-${num}`,
       src: `/remi/${num}.${ext}`,
-          alt: `Tatoveringsarbeid av Remi Silverberg - profesjonell tatoveringskunstner ved Skoggata Tattoo Parlour`,
+      alt: `Tatoveringsarbeid av Remi Sølvberg - profesjonell tatoveringskunstner ved Skoggata Tattoo Parlour`,
       artist: 'remi',
-      artistName: 'Remi Silverberg'
+      artistName: 'Remi Sølvberg'
     });
   });
-  
+
   // Kelvin Halberg - All works  
   const kelvinImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38];
   kelvinImages.forEach((num) => {
@@ -39,24 +39,24 @@ const generateGalleryItems = (): GalleryItem[] => {
     items.push({
       id: `kelvin-${num}`,
       src: `/kelvin/${num}.${ext}`,
-          alt: `Tatoveringsarbeid av Kelvin Halberg - ekspert tatoveringskunstner ved Skoggata Tattoo Parlour`,
+      alt: `Tatoveringsarbeid av Kelvin Halberg - ekspert tatoveringskunstner ved Skoggata Tattoo Parlour`,
       artist: 'kelvin',
       artistName: 'Kelvin Halberg'
     });
   });
-  
+
   // Frida - All works
   const fridaImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
   fridaImages.forEach((num) => {
     items.push({
       id: `frida-${num}`,
       src: `/frida/${num}.jpeg`,
-          alt: `Tatoveringsarbeid av Frida Grasto - talentfull tatoveringskunstner ved Skoggata Tattoo Parlour`,
+      alt: `Tatoveringsarbeid av Frida Grasto - talentfull tatoveringskunstner ved Skoggata Tattoo Parlour`,
       artist: 'frida',
       artistName: 'Frida'
     });
   });
-  
+
   return items;
 };
 
@@ -86,14 +86,14 @@ export const GallerySection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <motion.h2 
+            <motion.h2
               className="text-4xl md:text-5xl font-bold text-foreground font-heading mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -102,17 +102,17 @@ export const GallerySection: React.FC = () => {
             >
               Kunstnerportefølje
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Utforsk det særegne arbeidet til våre tre talentfulle kunstnere: Remi Silverberg, Kelvin Halberg og Frida. 
+              Utforsk det særegne arbeidet til våre tre talentfulle kunstnere: Remi Sølvberg, Kelvin Halberg og Frida.
               Hver bringer sin unike stil og ekspertise for å skape eksepsjonelle tatoveringer.
             </motion.p>
-            <motion.div 
+            <motion.div
               className="mt-6 flex justify-center"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -124,14 +124,14 @@ export const GallerySection: React.FC = () => {
           </motion.div>
 
           {/* Remi Silverberg Section */}
-          <motion.div 
+          <motion.div
             className="mb-20"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7 }}
           >
-            <motion.div 
+            <motion.div
               className="transform rotate-1 hover:rotate-0 transition-transform duration-300 mb-8"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -142,18 +142,18 @@ export const GallerySection: React.FC = () => {
               <div className="bg-card/90 border-4 border-accent rounded-2xl p-6 shadow-strong">
                 <div className="flex items-center gap-3 md:gap-6">
                   <div className="flex-shrink-0">
-                    <img 
-                      src="/remi-pic.jpg" 
-                      alt="Remi Silverberg - Profesjonell tatoveringskunstner og eier av Skoggata Tattoo Parlour"
+                    <img
+                      src="/remi-pic.jpg"
+                      alt="Remi Sølvberg - Profesjonell tatoveringskunstner og eier av Skoggata Tattoo Parlour"
                       className="w-20 h-20 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-accent shadow-strong"
                     />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 md:gap-4 flex-wrap">
-                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground font-heading">Remi Silverberg</h3>
-                      <a 
-                        href="https://www.instagram.com/skoggata_tattoo/?hl=en" 
-                        target="_blank" 
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground font-heading">Remi Sølvberg</h3>
+                      <a
+                        href="https://www.instagram.com/skoggata_tattoo/?hl=en"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 px-3 py-2 bg-accent/10 hover:bg-accent hover:text-accent-foreground rounded-lg transition-all duration-300 text-accent"
                         aria-label="Følg Remi på Instagram"
@@ -170,9 +170,8 @@ export const GallerySection: React.FC = () => {
               {previewItems.remi.map((item, index) => (
                 <div
                   key={item.id}
-                  className={`group cursor-pointer overflow-hidden rounded-2xl bg-card border-4 border-accent hover:border-primary hover:shadow-strong transition-all duration-500 transform ${
-                    index % 2 === 0 ? 'rotate-2 hover:rotate-0' : '-rotate-1 hover:rotate-0'
-                  }`}
+                  className={`group cursor-pointer overflow-hidden rounded-2xl bg-card border-4 border-accent hover:border-primary hover:shadow-strong transition-all duration-500 transform ${index % 2 === 0 ? 'rotate-2 hover:rotate-0' : '-rotate-1 hover:rotate-0'
+                    }`}
                   onClick={() => setSelectedImage(item)}
                 >
                   <div className="relative overflow-hidden">
@@ -185,7 +184,7 @@ export const GallerySection: React.FC = () => {
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                       <div className="bg-accent/90 backdrop-blur-sm px-6 py-3 rounded-full text-sm font-bold text-accent-foreground shadow-lg">
-                            Se Bilde
+                        Se Bilde
                       </div>
                     </div>
                   </div>
@@ -199,9 +198,9 @@ export const GallerySection: React.FC = () => {
                 className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-strong font-semibold"
               >
                 <Eye className="w-5 h-5 mr-2" />
-                    Vis Alt Remis Arbeid
+                Se mer arbeid av Remi
               </Button>
-          </div>
+            </div>
           </motion.div>
 
           {/* Kelvin Halberg Section */}
@@ -217,9 +216,9 @@ export const GallerySection: React.FC = () => {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 md:gap-4 flex-wrap">
                       <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground font-heading">Kelvin Halberg</h3>
-                      <a 
-                        href="https://www.instagram.com/human_nature369/?hl=en" 
-                        target="_blank" 
+                      <a
+                        href="https://www.instagram.com/human_nature369/?hl=en"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 px-3 py-2 bg-primary/10 hover:bg-primary hover:text-primary-foreground rounded-lg transition-all duration-300 text-primary"
                         aria-label="Følg Kelvin på Instagram"
@@ -234,24 +233,23 @@ export const GallerySection: React.FC = () => {
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               {previewItems.kelvin.map((item, index) => (
-              <div
-                key={item.id}
-                  className={`group cursor-pointer overflow-hidden rounded-2xl bg-card border-4 border-primary hover:border-accent hover:shadow-strong transition-all duration-500 transform ${
-                    index % 2 === 0 ? '-rotate-2 hover:rotate-0' : 'rotate-1 hover:rotate-0'
-                  }`}
-                onClick={() => setSelectedImage(item)}
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={item.src}
-                    alt={item.alt}
+                <div
+                  key={item.id}
+                  className={`group cursor-pointer overflow-hidden rounded-2xl bg-card border-4 border-primary hover:border-accent hover:shadow-strong transition-all duration-500 transform ${index % 2 === 0 ? '-rotate-2 hover:rotate-0' : 'rotate-1 hover:rotate-0'
+                    }`}
+                  onClick={() => setSelectedImage(item)}
+                >
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={item.src}
+                      alt={item.alt}
                       className="w-full h-80 object-cover object-center group-hover:scale-110 transition-transform duration-500"
-                    loading="lazy"
-                  />
+                      loading="lazy"
+                    />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                       <div className="bg-primary/90 backdrop-blur-sm px-6 py-3 rounded-full text-sm font-bold text-primary-foreground shadow-lg">
-                            Se Bilde
+                        Se Bilde
                       </div>
                     </div>
                   </div>
@@ -265,7 +263,7 @@ export const GallerySection: React.FC = () => {
                 className="bg-primary hover:bg-primary-hover text-primary-foreground shadow-strong font-semibold"
               >
                 <Eye className="w-5 h-5 mr-2" />
-                    Vis Alt Kelvins Arbeid
+                Se mer arbeid av Kelvin
               </Button>
             </div>
           </div>
@@ -276,8 +274,8 @@ export const GallerySection: React.FC = () => {
               <div className="bg-card/90 border-4 border-destructive rounded-2xl p-6 shadow-strong">
                 <div className="flex items-center gap-3 md:gap-6">
                   <div className="flex-shrink-0">
-                    <img 
-                      src="/frida-pic.jpg" 
+                    <img
+                      src="/frida-pic.jpg"
                       alt="Frida Grasto - Talentfull tatoveringskunstner ved Skoggata Tattoo Parlour"
                       className="w-20 h-20 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-destructive shadow-strong"
                     />
@@ -285,9 +283,9 @@ export const GallerySection: React.FC = () => {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 md:gap-4 flex-wrap">
                       <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground font-heading">Frida</h3>
-                      <a 
-                        href="https://www.instagram.com/grasto_tattoo/?hl=en" 
-                        target="_blank" 
+                      <a
+                        href="https://www.instagram.com/grasto_tattoo/?hl=en"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 px-3 py-2 bg-destructive/10 hover:bg-destructive hover:text-destructive-foreground rounded-lg transition-all duration-300 text-destructive"
                         aria-label="Følg Frida på Instagram"
@@ -304,9 +302,8 @@ export const GallerySection: React.FC = () => {
               {previewItems.frida.map((item, index) => (
                 <div
                   key={item.id}
-                  className={`group cursor-pointer overflow-hidden rounded-2xl bg-card border-4 border-destructive hover:border-primary hover:shadow-strong transition-all duration-500 transform ${
-                    index % 2 === 0 ? 'rotate-1 hover:rotate-0' : '-rotate-2 hover:rotate-0'
-                  }`}
+                  className={`group cursor-pointer overflow-hidden rounded-2xl bg-card border-4 border-destructive hover:border-primary hover:shadow-strong transition-all duration-500 transform ${index % 2 === 0 ? 'rotate-1 hover:rotate-0' : '-rotate-2 hover:rotate-0'
+                    }`}
                   onClick={() => setSelectedImage(item)}
                 >
                   <div className="relative overflow-hidden">
@@ -319,13 +316,13 @@ export const GallerySection: React.FC = () => {
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                       <div className="bg-destructive/90 backdrop-blur-sm px-6 py-3 rounded-full text-sm font-bold text-destructive-foreground shadow-lg">
-                            Se Bilde
+                        Se Bilde
                       </div>
                     </div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
             <div className="text-center">
               <Button
                 onClick={() => setSelectedArtist('frida')}
@@ -333,7 +330,7 @@ export const GallerySection: React.FC = () => {
                 className="bg-destructive hover:bg-destructive/90 text-destructive-foreground shadow-strong font-semibold"
               >
                 <Eye className="w-5 h-5 mr-2" />
-                    Vis Alt Fridas Arbeid
+                Se mer arbeid av Frida
               </Button>
             </div>
           </div>
@@ -367,9 +364,9 @@ export const GallerySection: React.FC = () => {
         <DialogContent className="max-w-7xl max-h-[90vh] overflow-auto">
           <DialogHeader>
             <DialogTitle className="text-2xl font-semibold">
-                  {selectedArtist === 'remi' && 'Remi Silverberg - Komplett Portefølje'}
-                  {selectedArtist === 'kelvin' && 'Kelvin Halberg - Komplett Portefølje'}
-                  {selectedArtist === 'frida' && 'Frida - Komplett Portefølje'}
+              {selectedArtist === 'remi' && 'Remi Sølvberg - Komplett Portefølje'}
+              {selectedArtist === 'kelvin' && 'Kelvin Halberg - Komplett Portefølje'}
+              {selectedArtist === 'frida' && 'Frida - Komplett Portefølje'}
             </DialogTitle>
           </DialogHeader>
           <div className="mt-6">
