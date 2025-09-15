@@ -13,7 +13,13 @@ export const Footer: React.FC = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Studio Info */}
           <div className="col-span-2 md:col-span-1">
-            <h3 className="text-2xl font-bold font-heading mb-4">Skoggata Tattoo Parlour</h3>
+            <div className="mb-4">
+              <img 
+                src="/logo.webp" 
+                alt="Skoggata Tattoo Parlour Logo" 
+                className="h-12 w-auto mb-4"
+              />
+            </div>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Norsk tatoveringskunst forankret i håndverk, presisjon og autentiske klientforhold. 
               Skaper meningsfulle tatoveringer som tåler tidens tann.

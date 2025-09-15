@@ -95,7 +95,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-primary font-heading">Skogga</h1>
+              <button 
+                onClick={() => scrollToSection('#home')}
+                className="flex items-center hover:opacity-80 transition-opacity duration-300"
+              >
+                <img 
+                  src="/logo.webp" 
+                  alt="Skoggata Tattoo Parlour Logo" 
+                  className="h-10 w-auto"
+                />
+              </button>
             </div>
 
             {/* Desktop Navigation */}
