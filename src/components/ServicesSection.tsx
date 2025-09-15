@@ -1,131 +1,171 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Clock, DollarSign, Palette } from "lucide-react";
+import { Palette, Calendar } from "lucide-react";
+import OrnamentDivider from "@/components/accents/OrnamentDivider";
+import WaveCrest from "@/components/accents/WaveCrest";
+import BarbedWire from "@/components/accents/BarbedWire";
+import { motion } from "framer-motion";
 
 interface ServiceCardProps {
   title: string;
   description: string;
-  sessionLength: string;
-  dayRateRange: string;
+  details?: string[];
   icon: React.ReactNode;
+  image: string;
+  imageAlt: string;
+  rotation: string;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ 
   title, 
   description, 
-  sessionLength, 
-  dayRateRange,
-  icon 
+  details,
+  icon,
+  image,
+  imageAlt,
+  rotation
 }) => (
-  <Card className="bg-card border border-border hover:shadow-medium transition-all duration-300 group">
-    <CardHeader className="pb-4">
-      <div className="flex items-center gap-3 mb-2">
-        <div className="p-2 bg-primary/10 rounded-lg text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-          {icon}
+  <motion.div 
+    className={`transform ${rotation} hover:rotate-0 transition-all duration-500 group`}
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.6 }}
+    whileHover={{ scale: 1.02, rotate: 0 }}
+  >
+    <Card className="bg-card/90 border-4 border-accent hover:border-primary hover:shadow-strong transition-all duration-300 h-full overflow-hidden">
+      {/* Image Header */}
+      <div className="relative h-64 overflow-hidden">
+        <img 
+          src={image}
+          alt={imageAlt}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="absolute top-4 left-4">
+          <div className="p-3 bg-accent/90 rounded-full text-accent-foreground shadow-lg">
+            {icon}
+          </div>
         </div>
-        <CardTitle className="text-xl font-semibold text-foreground font-heading">
-          {title}
-        </CardTitle>
-      </div>
-    </CardHeader>
-    <CardContent className="pt-0">
-      <p className="text-muted-foreground leading-relaxed mb-4">
-        {description}
-      </p>
-      
-      <div className="space-y-2 text-sm">
-        <div className="flex items-center gap-2 text-muted-foreground">
-          <Clock className="w-4 h-4" />
-          <span>Session: {sessionLength}</span>
-        </div>
-        <div className="flex items-center gap-2 text-muted-foreground">
-          <DollarSign className="w-4 h-4" />
-          <span>Day rate: {dayRateRange}</span>
+        <div className="absolute bottom-4 left-4 right-4">
+          <CardTitle className="text-3xl font-bold text-white font-heading drop-shadow-lg">
+            {title}
+          </CardTitle>
         </div>
       </div>
 
-      <p className="text-xs text-muted-foreground mt-4 italic">
-        Add reference images to your consultation inquiry for accurate pricing.
-      </p>
-    </CardContent>
-  </Card>
+      <CardContent className="p-6">
+        <p className="text-muted-foreground leading-relaxed text-lg mb-6">
+          {description}
+        </p>
+        
+        {details && (
+          <div className="space-y-3 bg-card/50 rounded-lg p-4 border border-border">
+            <h4 className="font-semibold text-accent text-sm uppercase tracking-wide">Alderskrav:</h4>
+            {details.map((detail, index) => (
+              <p key={index} className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2">
+                <span className="text-accent font-bold">•</span>
+                {detail}
+              </p>
+            ))}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  </motion.div>
 );
 
 export const ServicesSection: React.FC = () => {
   const services = [
     {
-      title: "Black & Grey Realism",
-      description: "Photorealistic portraits and detailed imagery brought to life through masterful shading and contrast work. Our specialty in creating lifelike representations that capture every nuance.",
-      sessionLength: "4-8 hours",
-      dayRateRange: "2500-4000 NOK",
-      icon: <Palette className="w-5 h-5" />
+      title: "Tatovering",
+      description: "Vi har tre talentfulle tatoveringskunstnere som jobber for oss: Remi Sølvberg, Frida Grasto og Kelvin Halberg. Naviger ned på siden for å få en smak av vårt arbeid.",
+      icon: <Palette className="w-6 h-6" />,
+      image: "/remi/18.jpeg",
+      imageAlt: "Skreddersydd tatovering av Remi Sølvberg - profesjonell tatoveringskunstner i Moss, Norge",
+      rotation: "rotate-2"
     },
     {
-      title: "Fine Line",
-      description: "Delicate, precise linework perfect for botanical designs, minimalist concepts, and intricate details. Clean execution with lasting clarity.",
-      sessionLength: "2-6 hours", 
-      dayRateRange: "2000-3500 NOK",
-      icon: <Palette className="w-5 h-5" />
-    },
-    {
-      title: "Japanese Traditional",
-      description: "Authentic Japanese tattooing with bold imagery, traditional motifs, and cultural significance. Koi, dragons, waves, and floral elements executed with respect for the art form.",
-      sessionLength: "6-10 hours",
-      dayRateRange: "3000-5000 NOK",
-      icon: <Palette className="w-5 h-5" />
-    },
-    {
-      title: "Geometric",
-      description: "Mathematical precision meets artistic vision. Sacred geometry, mandalas, and abstract patterns designed for perfect symmetry and visual impact.",
-      sessionLength: "3-7 hours",
-      dayRateRange: "2200-3800 NOK", 
-      icon: <Palette className="w-5 h-5" />
-    },
-    {
-      title: "Neo-Traditional",
-      description: "Modern interpretation of classic tattoo styles. Bold lines, vibrant colors, and contemporary subject matter with traditional foundations.",
-      sessionLength: "4-8 hours",
-      dayRateRange: "2600-4200 NOK",
-      icon: <Palette className="w-5 h-5" />
+      title: "Piercing",
+      description: "Det er piercing hver tirsdag og fredag fra 14-17!",
+      details: [
+        "Aldersgrense 16 år.",
+        "12 år i følge med foreldre, kun øreflipp piercing.",
+        "14 år i følge med foreldre, gjelder ikke tunge- eller kinnpiercing.",
+        "Aldersgrense 18 år for brystvorte piercing."
+      ],
+      icon: <Calendar className="w-6 h-6" />,
+      image: "/frida/12.jpeg",
+      imageAlt: "Profesjonell piercing av Frida Grasto - sikre piercingtjenester i Moss, Norge",
+      rotation: "-rotate-2"
     }
   ];
 
   return (
-    <section id="services" className="py-24 bg-background">
+    <section id="services" className="py-24 bg-background relative overflow-hidden">
+      <WaveCrest className="absolute -top-4 right-0 w-[520px] h-[180px] text-accent opacity-20" />
+      <BarbedWire className="absolute bottom-0 left-0 w-full h-[80px] text-accent/80 opacity-20" />
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground font-heading mb-6">
-              Our Services
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Specialized techniques crafted by experienced artists. Each service includes consultation, custom design, and comprehensive aftercare guidance.
-            </p>
-            <div className="w-20 h-1 bg-primary mx-auto rounded-full mt-6"></div>
-          </div>
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.h2 
+              className="text-4xl md:text-5xl font-bold text-foreground font-heading mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Våre Tjenester
+            </motion.h2>
+            <motion.p 
+              className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              Vi tilbyr profesjonelle tatoverings- og piercingtjenester i hjertet av Moss, Norge.
+            </motion.p>
+            <motion.div 
+              className="mt-6 flex justify-center"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <OrnamentDivider className="w-72 text-accent" />
+            </motion.div>
+          </motion.div>
 
           {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div 
+            className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             {services.map((service, index) => (
-              <ServiceCard 
+              <motion.div
                 key={index}
-                {...service}
-              />
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
+                <ServiceCard 
+                  {...service}
+                />
+              </motion.div>
             ))}
-          </div>
-
-          {/* Consultation Note */}
-          <div className="mt-16 text-center">
-            <Card className="bg-primary/5 border-primary/20 max-w-2xl mx-auto">
-              <CardContent className="pt-6">
-                <p className="text-muted-foreground">
-                  All pricing is approximate and varies based on size, complexity, and placement. 
-                  Book a consultation to discuss your specific project and receive accurate pricing.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

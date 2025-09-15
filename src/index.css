@@ -31,12 +31,20 @@ All colors MUST be HSL.
     --muted: 210 10% 94%;
     --muted-foreground: 210 8% 45%;
 
-    /* Accent - warmer copper tone */
-    --accent: 25 35% 60%;
-    --accent-foreground: 0 0% 98%;
+    /* Accent colors: yellow and EE2B2B red */
+    --accent: 50 100% 50%; /* vibrant yellow */
+    --accent-foreground: 210 20% 8%;
 
-    --destructive: 0 70% 50%;
+    /* Brand primaries tuned for tattoo parlor look */
+    --primary: 50 100% 50%; /* use yellow as primary accent in light mode */
+    --primary-foreground: 210 20% 8%;
+    --primary-hover: 50 95% 45%;
+
+    /* Destructive aligns to #EE2B2B */
+    --destructive: 0 83% 57%; /* approx EE2B2B */
     --destructive-foreground: 0 0% 98%;
+
+    
 
     --border: 210 10% 88%;
     --input: 210 10% 94%;
@@ -63,7 +71,7 @@ All colors MUST be HSL.
     --shadow-strong: 0 20px 60px -20px hsl(var(--primary) / 0.2);
     
     /* Typography */
-    --font-heading: 'Inter', system-ui, sans-serif;
+    --font-heading: 'DK Rotorua', 'Inter', system-ui, sans-serif;
     --font-body: 'Inter', system-ui, sans-serif;
     
     /* Animations */
@@ -98,9 +106,10 @@ All colors MUST be HSL.
     --popover: 210 18% 12%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 158 30% 70%;
+    /* In dark mode, primary = yellow for strong contrast */
+    --primary: 50 100% 50%;
     --primary-foreground: 210 20% 8%;
-    --primary-hover: 158 35% 75%;
+    --primary-hover: 50 95% 45%;
 
     --secondary: 210 15% 18%;
     --secondary-foreground: 0 0% 95%;
@@ -108,11 +117,11 @@ All colors MUST be HSL.
     --muted: 210 15% 15%;
     --muted-foreground: 210 8% 65%;
 
-    --accent: 25 40% 65%;
-    --accent-foreground: 210 20% 8%;
+    --accent: 0 83% 57%; /* EE2B2B red */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 70% 60%;
-    --destructive-foreground: 0 0% 95%;
+    --destructive: 0 83% 57%;
+    --destructive-foreground: 0 0% 100%;
 
     --border: 210 15% 18%;
     --input: 210 15% 15%;
@@ -145,6 +154,7 @@ All colors MUST be HSL.
   /* Smooth scrolling for hash navigation */
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 120px; /* Account for fixed navbar height + margin */
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -202,6 +212,8 @@ All colors MUST be HSL.
     transform: translateZ(0);
     will-change: transform;
   }
+
+  /* Removed generic repeating pattern in favor of unique SVG motifs per section */
 
   /* Custom scrollbar */
   .custom-scrollbar::-webkit-scrollbar {

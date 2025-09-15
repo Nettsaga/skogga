@@ -16,8 +16,8 @@ export const useActiveSection = () => {
         });
       },
       {
-        threshold: 0.3,
-        rootMargin: '-100px 0px -50% 0px', // Account for fixed navbar
+        threshold: 0.1,
+        rootMargin: '-120px 0px -60% 0px', // Account for fixed navbar (104px + margin)
       }
     );
 

@@ -7,7 +7,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import OrnamentDivider from "@/components/accents/OrnamentDivider";
+import BotanicalVines from "@/components/accents/BotanicalVines";
 import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
 
 export const ContactSection: React.FC = () => {
   const { toast } = useToast();
@@ -64,222 +67,230 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-background">
+    <section id="contact" className="pt-24 bg-background relative overflow-hidden">
+      <BotanicalVines className="absolute -right-8 -top-4 w-[360px] h-[220px] text-accent opacity-20" />
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground font-heading mb-6">
-              Get in Touch
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Ready to start your tattoo journey? Reach out to discuss your ideas, 
-              schedule a consultation, or ask any questions about our services.
-            </p>
-            <div className="w-20 h-1 bg-primary mx-auto rounded-full mt-6"></div>
-          </div>
+              {/* Header */}
+              <motion.div 
+                className="text-center mb-16"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6 }}
+              >
+                <motion.h2 
+                  className="text-4xl md:text-5xl font-bold text-foreground font-heading mb-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  Ta Kontakt
+                </motion.h2>
+                <motion.p 
+                  className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  Klar til å starte tatoveringsreisen din? Ta kontakt for å diskutere ideene dine,
+                  bestille en konsultasjon, eller stille spørsmål om våre tjenester.
+                </motion.p>
+                <motion.div 
+                  className="mt-6 flex justify-center"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                  <OrnamentDivider className="w-72 text-accent" />
+                </motion.div>
+              </motion.div>
 
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Contact Information */}
-            <div className="lg:col-span-1 space-y-6">
-              <Card className="bg-card border border-border">
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-foreground font-heading">
-                    Contact Information
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-center gap-3 text-muted-foreground">
-                    <Phone className="w-5 h-5 text-primary" />
-                    <div>
-                      <p className="font-medium text-foreground">Phone</p>
-                      <a href="tel:+4700000000" className="hover:text-primary transition-fast">
-                        +47 00 00 00 00
-                      </a>
+          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+            {/* Contact Information & Hours */}
+            <div className="space-y-8">
+              {/* Contact Info */}
+              <div className="transform rotate-1 hover:rotate-0 transition-transform duration-300">
+                <Card className="bg-card/90 border-4 border-accent hover:border-primary transition-all duration-300">
+                  <CardHeader>
+                        <CardTitle className="text-2xl font-semibold text-foreground font-heading">
+                          Ta Kontakt
+                        </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                        <div className="flex items-center gap-4 text-muted-foreground">
+                          <div className="p-3 bg-accent/10 rounded-full text-accent">
+                            <Phone className="w-6 h-6" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-foreground text-lg">Telefon</p>
+                            <div className="space-y-1">
+                              <a href="tel:+4769251008" className="block text-xl hover:text-accent transition-fast">
+                                69 25 10 08
+                              </a>
+                              <a href="tel:+4790092109" className="block text-xl hover:text-accent transition-fast">
+                                900 92 109
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                    
+                        <div className="flex items-center gap-4 text-muted-foreground">
+                          <div className="p-3 bg-accent/10 rounded-full text-accent">
+                            <Mail className="w-6 h-6" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-foreground text-lg">E-post</p>
+                            <a href="mailto:skoggata@hotmail.com" className="text-xl hover:text-accent transition-fast">
+                              skoggata@hotmail.com
+                            </a>
+                          </div>
+                        </div>
+                    
+                    <div className="flex items-center gap-4 text-muted-foreground">
+                      <div className="p-3 bg-accent/10 rounded-full text-accent">
+                        <MapPin className="w-6 h-6" />
+                      </div>
+                      <div>
+                            <p className="font-medium text-foreground text-lg">Adresse</p>
+                            <p className="text-xl">Skoggata 10<br />1530 MOSS</p>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-3 text-muted-foreground">
-                    <Mail className="w-5 h-5 text-primary" />
-                    <div>
-                      <p className="font-medium text-foreground">Email</p>
-                      <a href="mailto:hello@skogga.no" className="hover:text-primary transition-fast">
-                        hello@skogga.no
-                      </a>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-3 text-muted-foreground">
-                    <MapPin className="w-5 h-5 text-primary" />
-                    <div>
-                      <p className="font-medium text-foreground">Address</p>
-                      <p>Skoggata 10<br />1530 Moss, Norway</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </div>
 
-              <Card className="bg-card border border-border">
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-foreground font-heading flex items-center gap-2">
-                    <Clock className="w-5 h-5 text-primary" />
-                    Opening Hours
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2 text-muted-foreground">
-                  <div className="flex justify-between">
-                    <span>Monday - Friday</span>
-                    <span className="font-medium">12:00 - 17:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Saturday</span>
-                    <span className="font-medium">12:00 - 15:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Sunday</span>
-                    <span className="font-medium text-muted-foreground/70">Closed</span>
-                  </div>
-                </CardContent>
-              </Card>
+              {/* Opening Hours */}
+              <div className="transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+                <Card className="bg-card/90 border-4 border-primary hover:border-accent transition-all duration-300">
+                  <CardHeader>
+                        <CardTitle className="text-2xl font-semibold text-foreground font-heading flex items-center gap-3">
+                          <Clock className="w-6 h-6 text-primary" />
+                          Åpningstider
+                        </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4 text-lg">
+                    <div className="flex justify-between items-center p-3 bg-card/50 rounded-lg">
+                          <span className="font-medium">Mandag - Fredag</span>
+                          <span className="font-bold text-accent">12:00 - 17:00</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-card/50 rounded-lg">
+                          <span className="font-medium">Lørdag</span>
+                          <span className="font-bold text-accent">12:00 - 15:00</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-card/50 rounded-lg">
+                          <span className="font-medium">Søndag</span>
+                          <span className="font-bold text-muted-foreground/70">Stengt</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
 
             {/* Contact Form */}
-            <div className="lg:col-span-2">
-              <Card className="bg-card border border-border">
+            <div className="transform rotate-1 hover:rotate-0 transition-transform duration-300">
+              <Card className="bg-card/90 border-4 border-destructive hover:border-primary transition-all duration-300">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-semibold text-foreground font-heading">
-                    Book a Consultation
-                  </CardTitle>
+                      <CardTitle className="text-3xl font-bold text-foreground font-heading">
+                        Bestill en Konsultasjon
+                      </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="name">Full Name *</Label>
+                            <Label htmlFor="name" className="text-base font-medium">Fullt Navn *</Label>
                         <Input
                           id="name"
                           value={formData.name}
                           onChange={(e) => handleInputChange('name', e.target.value)}
                           required
-                          placeholder="Your full name"
+                              placeholder="Ditt fulle navn"
+                          className="h-12"
                         />
                       </div>
                       
                       <div className="space-y-2">
-                        <Label htmlFor="email">Email *</Label>
+                        <Label htmlFor="email" className="text-base font-medium">Email *</Label>
                         <Input
                           id="email"
                           type="email"
                           value={formData.email}
                           onChange={(e) => handleInputChange('email', e.target.value)}
                           required
-                          placeholder="your.email@example.com"
+                              placeholder="din.epost@eksempel.com"
+                          className="h-12"
                         />
                       </div>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="phone">Phone</Label>
+                            <Label htmlFor="phone" className="text-base font-medium">Telefon</Label>
                         <Input
                           id="phone"
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => handleInputChange('phone', e.target.value)}
                           placeholder="+47 xxx xx xxx"
+                          className="h-12"
                         />
                       </div>
                       
                       <div className="space-y-2">
-                        <Label htmlFor="preferredStyle">Preferred Style</Label>
+                            <Label htmlFor="preferredStyle" className="text-base font-medium">Foretrukket Kunstner</Label>
                         <Select value={formData.preferredStyle} onValueChange={(value) => handleInputChange('preferredStyle', value)}>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select a style" />
+                          <SelectTrigger className="h-12">
+                                <SelectValue placeholder="Velg en kunstner" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="realism">Black & Grey Realism</SelectItem>
-                            <SelectItem value="fineline">Fine Line</SelectItem>
-                            <SelectItem value="japanese">Japanese Traditional</SelectItem>
-                            <SelectItem value="geometric">Geometric</SelectItem>
-                            <SelectItem value="neotrad">Neo-Traditional</SelectItem>
-                            <SelectItem value="other">Other / Not Sure</SelectItem>
+                            <SelectItem value="remi">Remi Sølvberg</SelectItem>
+                            <SelectItem value="frida">Frida Grasto</SelectItem>
+                            <SelectItem value="kelvin">Kelvin Halberg</SelectItem>
+                                <SelectItem value="any">Hvilken som helst kunstner</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="size">Approximate Size</Label>
-                        <Input
-                          id="size"
-                          value={formData.size}
-                          onChange={(e) => handleInputChange('size', e.target.value)}
-                          placeholder="e.g., 10cm x 15cm"
-                        />
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <Label htmlFor="placement">Placement</Label>
-                        <Input
-                          id="placement"
-                          value={formData.placement}
-                          onChange={(e) => handleInputChange('placement', e.target.value)}
-                          placeholder="e.g., forearm, shoulder"
-                        />
-                      </div>
-                    </div>
-
                     <div className="space-y-2">
-                      <Label htmlFor="budget">Budget Range (NOK)</Label>
-                      <Select value={formData.budget} onValueChange={(value) => handleInputChange('budget', value)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select your budget range" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="2000-3000">2,000 - 3,000 NOK</SelectItem>
-                          <SelectItem value="3000-5000">3,000 - 5,000 NOK</SelectItem>
-                          <SelectItem value="5000-8000">5,000 - 8,000 NOK</SelectItem>
-                          <SelectItem value="8000+">8,000+ NOK</SelectItem>
-                          <SelectItem value="discuss">Prefer to discuss</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Project Description</Label>
+                          <Label htmlFor="message" className="text-base font-medium">Prosjektbeskrivelse</Label>
                       <Textarea
                         id="message"
                         value={formData.message}
                         onChange={(e) => handleInputChange('message', e.target.value)}
-                        placeholder="Describe your tattoo idea, inspiration, or any specific requirements..."
-                        className="min-h-[120px]"
+                            placeholder="Beskriv tatoveringsideen din, inspirasjon, størrelse, plassering og eventuelle spesifikke krav..."
+                        className="min-h-[140px]"
                       />
                     </div>
 
-                    <div className="flex items-start space-x-2">
+                    <div className="flex items-start space-x-3">
                       <Checkbox
                         id="consent"
                         checked={formData.consent}
                         onCheckedChange={(checked) => handleInputChange('consent', checked as boolean)}
+                        className="mt-1"
                       />
-                      <Label htmlFor="consent" className="text-sm leading-5 cursor-pointer">
-                        I agree to the consultation terms and understand that reference images and detailed 
-                        descriptions help provide accurate quotes. I consent to being contacted about my tattoo inquiry.
-                      </Label>
+                          <Label htmlFor="consent" className="text-sm leading-relaxed cursor-pointer">
+                            Jeg samtykker til å bli kontaktet angående min tatoveringsforespørsel og forstår at referansebilder hjelper med å gi nøyaktige tilbud.
+                          </Label>
                     </div>
 
                     <Button
                       type="submit"
-                      className="w-full bg-primary hover:bg-primary-hover text-primary-foreground shadow-soft"
+                      size="lg"
+                      className="w-full bg-destructive hover:bg-destructive/90 text-destructive-foreground shadow-strong text-lg font-semibold"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
-                        <>Sending...</>
+                            <>Sender...</>
                       ) : (
                         <>
-                          <Send className="w-4 h-4 mr-2" />
-                          Send Consultation Request
+                          <Send className="w-5 h-5 mr-2" />
+                              Send Konsultasjonsforespørsel
                         </>
                       )}
                     </Button>
@@ -288,23 +299,21 @@ export const ContactSection: React.FC = () => {
               </Card>
             </div>
           </div>
-
-          {/* Google Map Placeholder */}
-          <div className="mt-16">
-            <Card className="bg-card border border-border overflow-hidden">
-              <CardContent className="p-0">
-                <div className="bg-muted flex items-center justify-center h-80 text-muted-foreground">
-                  <div className="text-center">
-                    <MapPin className="w-12 h-12 mx-auto mb-4 text-primary" />
-                    <h3 className="text-lg font-semibold text-foreground mb-2">Find Us in Moss</h3>
-                    <p className="text-sm">Skoggata 10, 1530 Moss, Norway</p>
-                    <p className="text-xs mt-2">Google Maps integration available with API key</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </div>
+      </div>
+
+      {/* Full Width Google Maps */}
+      <div className="w-full">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2028.8455715286357!2d10.6658937!3d59.435650100000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4641529df4290605%3A0x4601085a5728562d!2sSkoggata%20Tattoo%20Parlour!5e0!3m2!1sen!2sph!4v1757907110987!5m2!1sen!2sph" 
+          width="100%" 
+          height="450" 
+          style={{border: 0}} 
+          allowFullScreen 
+          loading="lazy" 
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Skoggata Tattoo Parlour Location"
+        />
       </div>
     </section>
   );

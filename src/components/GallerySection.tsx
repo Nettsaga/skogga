@@ -1,189 +1,328 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { X, Filter } from "lucide-react";
-
-// Import portfolio images
-import portfolioRealism1 from "@/assets/portfolio-realism-1.jpg";
-import portfolioFineline1 from "@/assets/portfolio-fineline-1.jpg";
-import portfolioJapanese1 from "@/assets/portfolio-japanese-1.jpg";
-import portfolioGeometric1 from "@/assets/portfolio-geometric-1.jpg";
+import OrnamentDivider from "@/components/accents/OrnamentDivider";
+import MandalaBurst from "@/components/accents/MandalaBurst";
+import SacredRing from "@/components/accents/SacredRing";
+import { Eye, X } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface GalleryItem {
-  id: number;
+  id: string;
   src: string;
   alt: string;
-  category: string;
-  color: 'color' | 'blackgrey';
-  size: 'small' | 'medium' | 'large';
-  caption: string;
+  artist: 'remi' | 'kelvin' | 'frida';
+  artistName: string;
 }
 
-const galleryItems: GalleryItem[] = [
-  {
-    id: 1,
-    src: portfolioRealism1,
-    alt: "Detailed black and grey realism tattoo with intricate shading",
-    category: "realism",
-    color: "blackgrey",
-    size: "large",
-    caption: "Black & Grey Portrait - 8 hour session"
-  },
-  {
-    id: 2,
-    src: portfolioFineline1,
-    alt: "Fine line floral tattoo with delicate botanical elements",
-    category: "fineline",
-    color: "blackgrey",
-    size: "medium",
-    caption: "Fine Line Botanicals - 4 hour session"
-  },
-  {
-    id: 3,
-    src: portfolioJapanese1,
-    alt: "Traditional Japanese tattoo with waves and koi fish motifs",
-    category: "japanese",
-    color: "blackgrey",
-    size: "large",
-    caption: "Japanese Traditional - 10 hour session"
-  },
-  {
-    id: 4,
-    src: portfolioGeometric1,
-    alt: "Geometric mandala tattoo with sacred geometry patterns",
-    category: "geometric",
-    color: "blackgrey",
-    size: "medium",
-    caption: "Sacred Geometry Mandala - 6 hour session"
-  }
-];
+// Generate gallery items from public folder images
+const generateGalleryItems = (): GalleryItem[] => {
+  const items: GalleryItem[] = [];
+  
+  // Remi Silverberg - All works
+  const remiImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60];
+  remiImages.forEach((num) => {
+    const ext = num <= 25 ? 'jpeg' : (num === 26 ? 'png' : 'jpg');
+    items.push({
+      id: `remi-${num}`,
+      src: `/remi/${num}.${ext}`,
+          alt: `Tatoveringsarbeid av Remi Silverberg - profesjonell tatoveringskunstner ved Skoggata Tattoo Parlour`,
+      artist: 'remi',
+      artistName: 'Remi Silverberg'
+    });
+  });
+  
+  // Kelvin Halberg - All works  
+  const kelvinImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38];
+  kelvinImages.forEach((num) => {
+    const ext = [22, 23, 27, 32].includes(num) ? 'JPG' : 'jpg';
+    items.push({
+      id: `kelvin-${num}`,
+      src: `/kelvin/${num}.${ext}`,
+          alt: `Tatoveringsarbeid av Kelvin Halberg - ekspert tatoveringskunstner ved Skoggata Tattoo Parlour`,
+      artist: 'kelvin',
+      artistName: 'Kelvin Halberg'
+    });
+  });
+  
+  // Frida - All works
+  const fridaImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+  fridaImages.forEach((num) => {
+    items.push({
+      id: `frida-${num}`,
+      src: `/frida/${num}.jpeg`,
+          alt: `Tatoveringsarbeid av Frida Grasto - talentfull tatoveringskunstner ved Skoggata Tattoo Parlour`,
+      artist: 'frida',
+      artistName: 'Frida'
+    });
+  });
+  
+  return items;
+};
 
-type FilterType = 'all' | 'realism' | 'fineline' | 'japanese' | 'geometric' | 'color' | 'blackgrey' | 'small' | 'medium' | 'large';
+const galleryItems = generateGalleryItems();
 
 export const GallerySection: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+  const [selectedArtist, setSelectedArtist] = useState<'remi' | 'kelvin' | 'frida' | null>(null);
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
 
-  const filterButtons = [
-    { key: 'all' as FilterType, label: 'All Work' },
-    { key: 'realism' as FilterType, label: 'Realism' },
-    { key: 'fineline' as FilterType, label: 'Fine Line' },
-    { key: 'japanese' as FilterType, label: 'Japanese' },
-    { key: 'geometric' as FilterType, label: 'Geometric' },
-    { key: 'color' as FilterType, label: 'Color' },
-    { key: 'blackgrey' as FilterType, label: 'Black & Grey' },
-    { key: 'small' as FilterType, label: 'Small' },
-    { key: 'medium' as FilterType, label: 'Medium' },
-    { key: 'large' as FilterType, label: 'Large' },
-  ];
+  const groupedItems = {
+    remi: galleryItems.filter(item => item.artist === 'remi'),
+    kelvin: galleryItems.filter(item => item.artist === 'kelvin'),
+    frida: galleryItems.filter(item => item.artist === 'frida'),
+  };
 
-  const filteredItems = galleryItems.filter(item => {
-    if (activeFilter === 'all') return true;
-    return item.category === activeFilter || 
-           item.color === activeFilter || 
-           item.size === activeFilter;
-  });
+  // Preview items - 4 from each artist
+  const previewItems = {
+    remi: groupedItems.remi.slice(4, 8), // Images 5-8
+    kelvin: groupedItems.kelvin.slice(6, 10), // Images 7-10  
+    frida: groupedItems.frida.slice(2, 6), // Images 3-6
+  };
 
   return (
-    <section id="gallery" className="py-24 bg-gradient-subtle">
+    <section id="gallery" className="py-24 bg-background relative overflow-hidden">
+      <MandalaBurst className="absolute -left-24 top-24 w-[420px] h-[420px] text-accent opacity-15" petals={10} />
+      <SacredRing className="absolute -right-24 bottom-10 w-[360px] h-[360px] text-accent opacity-15" />
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground font-heading mb-6">
-              Portfolio
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              A selection of our recent work showcasing various styles and techniques. 
-              Each piece tells a unique story and represents our commitment to artistic excellence.
-            </p>
-            <div className="w-20 h-1 bg-primary mx-auto rounded-full mt-6"></div>
-          </div>
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.h2 
+              className="text-4xl md:text-5xl font-bold text-foreground font-heading mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Kunstnerportefølje
+            </motion.h2>
+            <motion.p 
+              className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              Utforsk det særegne arbeidet til våre tre talentfulle kunstnere: Remi Silverberg, Kelvin Halberg og Frida. 
+              Hver bringer sin unike stil og ekspertise for å skape eksepsjonelle tatoveringer.
+            </motion.p>
+            <motion.div 
+              className="mt-6 flex justify-center"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <OrnamentDivider className="w-72 text-accent" />
+            </motion.div>
+          </motion.div>
 
-          {/* Filter Buttons */}
-          <div className="mb-12">
-            <div className="flex flex-wrap gap-2 justify-center">
-              {filterButtons.map((filter) => (
-                <Button
-                  key={filter.key}
-                  variant={activeFilter === filter.key ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setActiveFilter(filter.key)}
-                  className={`transition-all duration-300 ${
-                    activeFilter === filter.key 
-                      ? 'bg-primary text-primary-foreground shadow-soft' 
-                      : 'hover:bg-primary/10'
+          {/* Remi Silverberg Section */}
+          <motion.div 
+            className="mb-20"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7 }}
+          >
+            <motion.div 
+              className="transform rotate-1 hover:rotate-0 transition-transform duration-300 mb-8"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ scale: 1.02, rotate: 0 }}
+            >
+              <div className="bg-card/90 border-4 border-accent rounded-2xl p-6 shadow-strong">
+                <h3 className="text-4xl font-bold text-foreground font-heading">Remi Silverberg</h3>
+              </div>
+            </motion.div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              {previewItems.remi.map((item, index) => (
+                <div
+                  key={item.id}
+                  className={`group cursor-pointer overflow-hidden rounded-2xl bg-card border-4 border-accent hover:border-primary hover:shadow-strong transition-all duration-500 transform ${
+                    index % 2 === 0 ? 'rotate-2 hover:rotate-0' : '-rotate-1 hover:rotate-0'
                   }`}
+                  onClick={() => setSelectedImage(item)}
                 >
-                  <Filter className="w-4 h-4 mr-2" />
-                  {filter.label}
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          {/* Gallery Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredItems.map((item) => (
-              <div
-                key={item.id}
-                className="group cursor-pointer overflow-hidden rounded-xl bg-card border border-border hover:shadow-medium transition-all duration-300"
-                onClick={() => setSelectedImage(item)}
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-primary">
-                      View Details
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="w-full h-80 object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <div className="bg-accent/90 backdrop-blur-sm px-6 py-3 rounded-full text-sm font-bold text-accent-foreground shadow-lg">
+                            Se Bilde
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="p-4">
-                  <p className="text-sm text-muted-foreground">{item.caption}</p>
-                </div>
+              ))}
+            </div>
+            <div className="text-center">
+              <Button
+                onClick={() => setSelectedArtist('remi')}
+                size="lg"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-strong font-semibold"
+              >
+                <Eye className="w-5 h-5 mr-2" />
+                    Vis Alt Remis Arbeid
+              </Button>
+            </div>
+          </motion.div>
+
+          {/* Kelvin Halberg Section */}
+          <div className="mb-20">
+            <div className="transform -rotate-1 hover:rotate-0 transition-transform duration-300 mb-8">
+              <div className="bg-card/90 border-4 border-primary rounded-2xl p-6 shadow-strong">
+                <h3 className="text-4xl font-bold text-foreground font-heading">Kelvin Halberg</h3>
               </div>
-            ))}
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              {previewItems.kelvin.map((item, index) => (
+                <div
+                  key={item.id}
+                  className={`group cursor-pointer overflow-hidden rounded-2xl bg-card border-4 border-primary hover:border-accent hover:shadow-strong transition-all duration-500 transform ${
+                    index % 2 === 0 ? '-rotate-2 hover:rotate-0' : 'rotate-1 hover:rotate-0'
+                  }`}
+                  onClick={() => setSelectedImage(item)}
+                >
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="w-full h-80 object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <div className="bg-primary/90 backdrop-blur-sm px-6 py-3 rounded-full text-sm font-bold text-primary-foreground shadow-lg">
+                            Se Bilde
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="text-center">
+              <Button
+                onClick={() => setSelectedArtist('kelvin')}
+                size="lg"
+                className="bg-primary hover:bg-primary-hover text-primary-foreground shadow-strong font-semibold"
+              >
+                <Eye className="w-5 h-5 mr-2" />
+                    Vis Alt Kelvins Arbeid
+              </Button>
+            </div>
           </div>
 
-          {/* Empty State */}
-          {filteredItems.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-muted-foreground text-lg">
-                No items found for the selected filter. Try a different category.
-              </p>
+          {/* Frida Section */}
+          <div className="mb-20">
+            <div className="transform rotate-2 hover:rotate-0 transition-transform duration-300 mb-8">
+              <div className="bg-card/90 border-4 border-destructive rounded-2xl p-6 shadow-strong">
+                <h3 className="text-4xl font-bold text-foreground font-heading">Frida</h3>
+              </div>
             </div>
-          )}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              {previewItems.frida.map((item, index) => (
+                <div
+                  key={item.id}
+                  className={`group cursor-pointer overflow-hidden rounded-2xl bg-card border-4 border-destructive hover:border-primary hover:shadow-strong transition-all duration-500 transform ${
+                    index % 2 === 0 ? 'rotate-1 hover:rotate-0' : '-rotate-2 hover:rotate-0'
+                  }`}
+                  onClick={() => setSelectedImage(item)}
+                >
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="w-full h-80 object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <div className="bg-destructive/90 backdrop-blur-sm px-6 py-3 rounded-full text-sm font-bold text-destructive-foreground shadow-lg">
+                            Se Bilde
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="text-center">
+              <Button
+                onClick={() => setSelectedArtist('frida')}
+                size="lg"
+                className="bg-destructive hover:bg-destructive/90 text-destructive-foreground shadow-strong font-semibold"
+              >
+                <Eye className="w-5 h-5 mr-2" />
+                    Vis Alt Fridas Arbeid
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Individual Image Lightbox */}
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-auto">
           {selectedImage && (
             <>
               <DialogHeader>
                 <DialogTitle className="text-xl font-semibold">
-                  {selectedImage.caption}
+                  {selectedImage.artistName}
                 </DialogTitle>
               </DialogHeader>
               <div className="mt-4">
                 <img
                   src={selectedImage.src}
                   alt={selectedImage.alt}
-                  className="w-full rounded-lg shadow-medium"
+                  className="w-full rounded-lg shadow-medium object-contain max-h-[70vh]"
                 />
-                <p className="mt-4 text-muted-foreground">
-                  {selectedImage.alt}
-                </p>
               </div>
             </>
           )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Individual Artist Gallery Modal */}
+      <Dialog open={!!selectedArtist} onOpenChange={() => setSelectedArtist(null)}>
+        <DialogContent className="max-w-7xl max-h-[90vh] overflow-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-semibold">
+                  {selectedArtist === 'remi' && 'Remi Silverberg - Komplett Portefølje'}
+                  {selectedArtist === 'kelvin' && 'Kelvin Halberg - Komplett Portefølje'}
+                  {selectedArtist === 'frida' && 'Frida - Komplett Portefølje'}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="mt-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {selectedArtist && groupedItems[selectedArtist].map((item) => (
+                <div
+                  key={item.id}
+                  className="cursor-pointer overflow-hidden rounded-lg hover:shadow-medium transition-all duration-300"
+                  onClick={() => setSelectedImage(item)}
+                >
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="w-full h-32 object-cover object-center hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </section>
