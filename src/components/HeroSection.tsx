@@ -83,15 +83,6 @@ export const HeroSection: React.FC = () => {
           <span className="text-destructive">Båret for livet.</span>
         </motion.h1>
 
-        <motion.p
-          className="text-lg md:text-2xl text-muted-foreground mb-6 max-w-2xl mx-auto"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-        >
-          Skreddersydde tatoveringer av spesialistkunstnere.
-        </motion.p>
-
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
           <Button
             onClick={scrollToContact}
